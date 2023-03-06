@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SWD\\E-Learning\\DataAccess\\DataAccess.csproj": {}
+    "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj": {}
   },
   "projects": {
-    "D:\\SWD\\E-Learning\\DataAccess\\DataAccess.csproj": {
+    "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SWD\\E-Learning\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "D:\\SWD\\E-Learning\\DataAccess\\DataAccess.csproj",
+        "projectPath": "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\SWD\\E-Learning\\DataAccess\\obj\\",
+        "outputPath": "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
