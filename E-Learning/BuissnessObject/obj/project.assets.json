@@ -6182,19 +6182,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
+    "C:\\Users\\123vn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SWD\\Github\\E-Learning\\E-Learning\\BuissnessObject\\BuissnessObject.csproj",
+      "projectUniqueName": "D:\\SWD\\SourcCode\\E-Learning\\E-Learning\\BuissnessObject\\BuissnessObject.csproj",
       "projectName": "BuissnessObject",
-      "projectPath": "D:\\SWD\\Github\\E-Learning\\E-Learning\\BuissnessObject\\BuissnessObject.csproj",
-      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\SWD\\Github\\E-Learning\\E-Learning\\BuissnessObject\\obj\\",
+      "projectPath": "D:\\SWD\\SourcCode\\E-Learning\\E-Learning\\BuissnessObject\\BuissnessObject.csproj",
+      "packagesPath": "C:\\Users\\123vn\\.nuget\\packages\\",
+      "outputPath": "D:\\SWD\\SourcCode\\E-Learning\\E-Learning\\BuissnessObject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\123vn\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6202,14 +6202,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.telerik.com/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "D:\\SWD\\Github\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj"
+            "D:\\SWD\\SourcCode\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "D:\\SWD\\SourcCode\\E-Learning\\E-Learning\\DataAccess\\DataAccess.csproj"
             }
           }
         }
@@ -6239,7 +6240,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
