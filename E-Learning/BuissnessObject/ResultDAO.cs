@@ -9,57 +9,57 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
-    public class StudentDAO
+    public class ResultDAO
     {
-        public static List<Student> GetAllStudents()
-        {
-            using(var db = new ECourseDBContext())
-            {
-                return db.Students.ToList();
-            }
-        }
-
-        public static Student GetStudentById(String StudentID)
+        public static List<Result> GetAllResults()
         {
             using (var db = new ECourseDBContext())
             {
-                return db.Students.FirstOrDefault(s => s.StudentId == StudentID && s.Status == true);
+                return db.Results.ToList();
             }
         }
 
-        public static Student CreateStudent(Student student)
+        public static Result GetResultById(String ResultID)
+        {
+            using (var db = new ECourseDBContext())
+            {
+                return db.Results.FirstOrDefault(s => s.ResultId == ResultID);
+            }
+        }
+
+        public static Result CreateResult(Result Result)
         {
             using (var db = new ECourseDBContext())
             {
                 try
                 {
-                    if(GetStudentById(student.StudentId) != null)
+                    if (GetResultById(Result.ResultId) != null)
                     {
-                        throw new Exception(ErrorMessage.StudentError.STUDENT_EXITED);
+                        throw new Exception(ErrorMessage.ResultError.RESULT_EXITED);
                     }
-                    db.Students.Add(student);
+                    db.Results.Add(Result);
                     db.SaveChangesAsync();
-                    return student;
+                    return Result;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
-                
+
             }
         }
 
-        public static void UpdateStudent(Student student)
+        public static void UpdateResult(Result Result)
         {
-            using(var db = new ECourseDBContext())
+            using (var db = new ECourseDBContext())
             {
                 try
                 {
-                    if(GetStudentById(student.StudentId) == null)
+                    if (GetResultById(Result.ResultId) == null)
                     {
-                        throw new Exception(ErrorMessage.StudentError.STUDENT_IS_NOT_EXITED);
+                        throw new Exception(ErrorMessage.ResultError.RESULT_IS_NOT_EXITED);
                     }
-                    db.Students.Update(student);
+                    db.Results.Update(Result);
                     db.SaveChangesAsync();
                 }
                 catch (Exception ex)
@@ -69,18 +69,18 @@ namespace BuissnessObject
             }
         }
 
-        public static void DeleteStudent(String StudentID)
+        public static void DeleteResult(String ResultID)
         {
             using (var db = new ECourseDBContext())
             {
                 try
                 {
-                    if (GetStudentById(StudentID) == null)
+                    if (GetResultById(ResultID) == null)
                     {
-                        throw new Exception(ErrorMessage.StudentError.STUDENT_IS_NOT_EXITED);
+                        throw new Exception(ErrorMessage.ResultError.RESULT_IS_NOT_EXITED);
                     }
-                    Student student = GetStudentById(StudentID);
-                    db.Students.Remove(student);
+                    Result Result = GetResultById(ResultID);
+                    db.Results.Remove(Result);
                     db.SaveChangesAsync();
                 }
                 catch (Exception ex)

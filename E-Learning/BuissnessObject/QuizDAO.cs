@@ -9,57 +9,57 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
-    public class StudentDAO
+    public class QuizDAO
     {
-        public static List<Student> GetAllStudents()
-        {
-            using(var db = new ECourseDBContext())
-            {
-                return db.Students.ToList();
-            }
-        }
-
-        public static Student GetStudentById(String StudentID)
+        public static List<Quiz> GetAllQuizs()
         {
             using (var db = new ECourseDBContext())
             {
-                return db.Students.FirstOrDefault(s => s.StudentId == StudentID && s.Status == true);
+                return db.Quizzes.ToList();
             }
         }
 
-        public static Student CreateStudent(Student student)
+        public static Quiz GetQuizById(String QuizID)
+        {
+            using (var db = new ECourseDBContext())
+            {
+                return db.Quizzes.FirstOrDefault(s => s.QuizId == QuizID);
+            }
+        }
+
+        public static Quiz CreateQuiz(Quiz Quiz)
         {
             using (var db = new ECourseDBContext())
             {
                 try
                 {
-                    if(GetStudentById(student.StudentId) != null)
+                    if (GetQuizById(Quiz.QuizId) != null)
                     {
-                        throw new Exception(ErrorMessage.StudentError.STUDENT_EXITED);
+                        throw new Exception(ErrorMessage.QuizError.QUIZ_EXITED);
                     }
-                    db.Students.Add(student);
+                    db.Quizzes.Add(Quiz);
                     db.SaveChangesAsync();
-                    return student;
+                    return Quiz;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
-                
+
             }
         }
 
-        public static void UpdateStudent(Student student)
+        public static void UpdateQuiz(Quiz Quiz)
         {
-            using(var db = new ECourseDBContext())
+            using (var db = new ECourseDBContext())
             {
                 try
                 {
-                    if(GetStudentById(student.StudentId) == null)
+                    if (GetQuizById(Quiz.QuizId) == null)
                     {
-                        throw new Exception(ErrorMessage.StudentError.STUDENT_IS_NOT_EXITED);
+                        throw new Exception(ErrorMessage.QuizError.QUIZ_IS_NOT_EXITED);
                     }
-                    db.Students.Update(student);
+                    db.Quizzes.Update(Quiz);
                     db.SaveChangesAsync();
                 }
                 catch (Exception ex)
@@ -69,18 +69,18 @@ namespace BuissnessObject
             }
         }
 
-        public static void DeleteStudent(String StudentID)
+        public static void DeleteQuiz(String QuizID)
         {
             using (var db = new ECourseDBContext())
             {
                 try
                 {
-                    if (GetStudentById(StudentID) == null)
+                    if (GetQuizById(QuizID) == null)
                     {
-                        throw new Exception(ErrorMessage.StudentError.STUDENT_IS_NOT_EXITED);
+                        throw new Exception(ErrorMessage.QuizError.QUIZ_IS_NOT_EXITED);
                     }
-                    Student student = GetStudentById(StudentID);
-                    db.Students.Remove(student);
+                    Quiz Quiz = GetQuizById(QuizID);
+                    db.Quizzes.Remove(Quiz);
                     db.SaveChangesAsync();
                 }
                 catch (Exception ex)

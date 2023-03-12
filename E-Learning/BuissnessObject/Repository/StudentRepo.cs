@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<Student> GetStudents() => StudentDAO.GetAllStudents();
         public Student GetStudentByID(String StudentID) => StudentDAO.GetStudentById(StudentID);
         public Student CreateStudent(Student student) => StudentDAO.CreateStudent(student);
-        public void UpdateStudent(Student student) => StudentDAO.UpdateSutdent(student);
+        public void UpdateStudent(Student student) => StudentDAO.UpdateStudent(student);
         public void DeleteStudent(String StudentID) => StudentDAO.DeleteStudent(StudentID);
     }
 }
