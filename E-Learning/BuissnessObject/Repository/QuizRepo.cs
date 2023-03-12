@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject.Repository
 {
-    public class QuizRepo
+    public class QuizRepo : IQuizRepo
     {
         public List<Quiz> GetQuizs() => QuizDAO.GetAllQuizs();
         public Quiz GetQuizByID(String QuizID) => QuizDAO.GetQuizById(QuizID);
