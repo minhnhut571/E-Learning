@@ -26,5 +26,13 @@ namespace DataAccess.ErrorMessage
             public readonly static string MAJOR_IS_NOT_EXITED = "Major isn't exited";
         }
         #endregion
+
+        #region Course Error Message
+        public static class CourseError
+        {
+            public readonly static string COURSE_EXITED = "Course exited";
+            public readonly static string COURSE_IS_NOT_EXITED = "Course isn't exited";
+        }
+        #endregion
     }
 }
