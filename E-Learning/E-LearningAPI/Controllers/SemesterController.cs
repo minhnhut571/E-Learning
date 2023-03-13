@@ -12,52 +12,52 @@ namespace E_LearningAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class SemestersController : ControllerBase
     {
-        private readonly IStudentRepo studentRepo = new StudentRepo();
+        private readonly ISemesterRepo SemesterRepo = new SemesterRepo();
 
-        public StudentsController()
+        public SemestersController()
         {
         }
 
-        // GET: api/Students
+        // GET: api/Semesters
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+        public async Task<ActionResult<IEnumerable<Semester>>> GetSemesters()
         {
-            return studentRepo.GetStudents();
+            return SemesterRepo.GetSemesters();
         }
 
-        // GET: api/Students/5
+        // GET: api/Semesters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(string id)
+        public async Task<ActionResult<Semester>> GetSemester(string id)
         {
-            var student = studentRepo.GetStudentByID(id);
+            var Semester = SemesterRepo.GetSemesterByID(id);
 
-            if (student == null)
+            if (Semester == null)
             {
                 return NotFound();
             }
 
-            return student;
+            return Semester;
         }
 
-        // PUT: api/Students/5
+        // PUT: api/Semesters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(string id, Student student)
+        public async Task<IActionResult> PutSemester(string id, Semester Semester)
         {
-            if (id != student.StudentId)
+            if (id != Semester.SemesterId)
             {
                 return BadRequest();
             }
 
             try
             {
-                studentRepo.UpdateStudent(student);
+                SemesterRepo.UpdateSemester(Semester);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(id))
+                if (!SemesterExists(id))
                 {
                     return NotFound();
                 }
@@ -70,14 +70,14 @@ namespace E_LearningAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Students
+        // POST: api/Semesters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent(Student student)
+        public async Task<ActionResult<Semester>> PostSemester(Semester Semester)
         {
             try
             {
-                return Ok(studentRepo.CreateStudent(student));
+                return Ok(SemesterRepo.CreateSemester(Semester));
             }
             catch (Exception ex)
             {
@@ -86,24 +86,24 @@ namespace E_LearningAPI.Controllers
 
         }
 
-        // DELETE: api/Students/5
+        // DELETE: api/Semesters/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(string id)
+        public async Task<IActionResult> DeleteSemester(string id)
         {
-            var student = studentRepo.GetStudentByID(id);
-            if (student == null)
+            var Semester = SemesterRepo.GetSemesterByID(id);
+            if (Semester == null)
             {
                 return NotFound();
             }
 
-            studentRepo.DeleteStudent(id);
+            SemesterRepo.DeleteSemester(id);
 
             return NoContent();
         }
 
-        private bool StudentExists(string id)
+        private bool SemesterExists(string id)
         {
-            return studentRepo.GetStudents().Any(e => e.StudentId == id);
+            return SemesterRepo.GetSemesters().Any(e => e.SemesterId == id);
         }
     }
 }

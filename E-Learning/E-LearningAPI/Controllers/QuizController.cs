@@ -12,52 +12,52 @@ namespace E_LearningAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class QuizsController : ControllerBase
     {
-        private readonly IStudentRepo studentRepo = new StudentRepo();
+        private readonly IQuizRepo QuizRepo = new QuizRepo();
 
-        public StudentsController()
+        public QuizsController()
         {
         }
 
-        // GET: api/Students
+        // GET: api/Quizs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+        public async Task<ActionResult<IEnumerable<Quiz>>> GetQuizs()
         {
-            return studentRepo.GetStudents();
+            return QuizRepo.GetQuizs();
         }
 
-        // GET: api/Students/5
+        // GET: api/Quizs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(string id)
+        public async Task<ActionResult<Quiz>> GetQuiz(string id)
         {
-            var student = studentRepo.GetStudentByID(id);
+            var Quiz = QuizRepo.GetQuizByID(id);
 
-            if (student == null)
+            if (Quiz == null)
             {
                 return NotFound();
             }
 
-            return student;
+            return Quiz;
         }
 
-        // PUT: api/Students/5
+        // PUT: api/Quizs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(string id, Student student)
+        public async Task<IActionResult> PutQuiz(string id, Quiz Quiz)
         {
-            if (id != student.StudentId)
+            if (id != Quiz.QuizId)
             {
                 return BadRequest();
             }
 
             try
             {
-                studentRepo.UpdateStudent(student);
+                QuizRepo.UpdateQuiz(Quiz);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(id))
+                if (!QuizExists(id))
                 {
                     return NotFound();
                 }
@@ -70,14 +70,14 @@ namespace E_LearningAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Students
+        // POST: api/Quizs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent(Student student)
+        public async Task<ActionResult<Quiz>> PostQuiz(Quiz Quiz)
         {
             try
             {
-                return Ok(studentRepo.CreateStudent(student));
+                return Ok(QuizRepo.CreateQuiz(Quiz));
             }
             catch (Exception ex)
             {
@@ -86,24 +86,24 @@ namespace E_LearningAPI.Controllers
 
         }
 
-        // DELETE: api/Students/5
+        // DELETE: api/Quizs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(string id)
+        public async Task<IActionResult> DeleteQuiz(string id)
         {
-            var student = studentRepo.GetStudentByID(id);
-            if (student == null)
+            var Quiz = QuizRepo.GetQuizByID(id);
+            if (Quiz == null)
             {
                 return NotFound();
             }
 
-            studentRepo.DeleteStudent(id);
+            QuizRepo.DeleteQuiz(id);
 
             return NoContent();
         }
 
-        private bool StudentExists(string id)
+        private bool QuizExists(string id)
         {
-            return studentRepo.GetStudents().Any(e => e.StudentId == id);
+            return QuizRepo.GetQuizs().Any(e => e.QuizId == id);
         }
     }
 }

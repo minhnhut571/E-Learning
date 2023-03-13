@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject.Repository
 {
-    public class StudentSemesterSemesterRepo : IStudentSemesterRepo
+    public class StudentSemesterRepo : IStudentSemesterRepo
     {
         public List<StudentSemester> GetStudentSemesters() => StudentSemesterDAO.GetAllStudentSemesters();
         public StudentSemester GetStudentSemesterByID(String StudentSemesterID) => StudentSemesterDAO.GetStudentSemesterById(StudentSemesterID);

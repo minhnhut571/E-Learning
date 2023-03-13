@@ -77,21 +77,13 @@ namespace E_LearningAPI.Controllers
         {
             try
             {
-                MajorRepo.CreateMajor(Major);
+                return Ok(MajorRepo.CreateMajor(Major));
             }
-            catch (DbUpdateException)
+            catch (Exception ex)
             {
-                if (MajorExists(Major.MajorId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
-            return CreatedAtAction("GetMajor", new { id = Major.MajorId }, Major);
         }
 
         // DELETE: api/Majors/5

@@ -12,52 +12,52 @@ namespace E_LearningAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class SubjectsController : ControllerBase
     {
-        private readonly IStudentRepo studentRepo = new StudentRepo();
+        private readonly ISubjectRepo SubjectRepo = new SubjectRepo();
 
-        public StudentsController()
+        public SubjectsController()
         {
         }
 
-        // GET: api/Students
+        // GET: api/Subjects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
+        public async Task<ActionResult<IEnumerable<Subject>>> GetSubjects()
         {
-            return studentRepo.GetStudents();
+            return SubjectRepo.GetSubjects();
         }
 
-        // GET: api/Students/5
+        // GET: api/Subjects/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(string id)
+        public async Task<ActionResult<Subject>> GetSubject(string id)
         {
-            var student = studentRepo.GetStudentByID(id);
+            var Subject = SubjectRepo.GetSubjectByID(id);
 
-            if (student == null)
+            if (Subject == null)
             {
                 return NotFound();
             }
 
-            return student;
+            return Subject;
         }
 
-        // PUT: api/Students/5
+        // PUT: api/Subjects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(string id, Student student)
+        public async Task<IActionResult> PutSubject(string id, Subject Subject)
         {
-            if (id != student.StudentId)
+            if (id != Subject.SubjectId)
             {
                 return BadRequest();
             }
 
             try
             {
-                studentRepo.UpdateStudent(student);
+                SubjectRepo.UpdateSubject(Subject);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentExists(id))
+                if (!SubjectExists(id))
                 {
                     return NotFound();
                 }
@@ -70,14 +70,14 @@ namespace E_LearningAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Students
+        // POST: api/Subjects
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent(Student student)
+        public async Task<ActionResult<Subject>> PostSubject(Subject Subject)
         {
             try
             {
-                return Ok(studentRepo.CreateStudent(student));
+                return Ok(SubjectRepo.CreateSubject(Subject));
             }
             catch (Exception ex)
             {
@@ -86,24 +86,24 @@ namespace E_LearningAPI.Controllers
 
         }
 
-        // DELETE: api/Students/5
+        // DELETE: api/Subjects/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(string id)
+        public async Task<IActionResult> DeleteSubject(string id)
         {
-            var student = studentRepo.GetStudentByID(id);
-            if (student == null)
+            var Subject = SubjectRepo.GetSubjectByID(id);
+            if (Subject == null)
             {
                 return NotFound();
             }
 
-            studentRepo.DeleteStudent(id);
+            SubjectRepo.DeleteSubject(id);
 
             return NoContent();
         }
 
-        private bool StudentExists(string id)
+        private bool SubjectExists(string id)
         {
-            return studentRepo.GetStudents().Any(e => e.StudentId == id);
+            return SubjectRepo.GetSubjects().Any(e => e.SubjectId == id);
         }
     }
 }

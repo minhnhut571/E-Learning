@@ -77,21 +77,13 @@ namespace E_LearningAPI.Controllers
         {
             try
             {
-                CourseRepo.CreateCourse(Course);
+                return Ok(CourseRepo.CreateCourse(Course));
             }
-            catch (DbUpdateException)
+            catch (Exception ex)
             {
-                if (CourseExists(Course.CourseId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
-            return CreatedAtAction("GetCourse", new { id = Course.CourseId }, Course);
         }
 
         // DELETE: api/Courses/5
