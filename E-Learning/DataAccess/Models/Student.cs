@@ -7,6 +7,7 @@ namespace DataAccess.Models
 {
     public partial class Student
     {
+
         public Student()
         {
             SubjectItems = new HashSet<SubjectItem>();

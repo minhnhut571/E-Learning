@@ -1,9 +1,6 @@
 ﻿using DataAccess.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuissnessObject.Repository
 {
@@ -11,8 +8,9 @@ namespace BuissnessObject.Repository
     {
         public List<Student> GetStudents();
         public Student GetStudentByID(String StudentID);
-        public Student CreateStudent(Student student);
+        public Student CreateStudent(StudentDTO student);
         public void UpdateStudent(Student student);
         public void DeleteStudent(String StudentID);
+        public void UpdateStudentStatus(String studentId);
     }
 }

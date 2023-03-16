@@ -1,4 +1,5 @@
 using BuissnessObject;
+using BuissnessObject.Repository;
 using BuissnessObject.Repository.AdminRepository;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,8 @@ namespace E_LearningAPI
             services.AddDbContext<ECourseDBContext>();
             services.AddScoped<AdminDAO>();
             services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<StudentDAO>();
+            services.AddScoped<IStudentRepo, StudentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,18 +1,34 @@
 ﻿using DataAccess.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuissnessObject.Repository
 {
-    public class StudentRepo :IStudentRepo
+    public class StudentRepo : IStudentRepo
     {
         public List<Student> GetStudents() => StudentDAO.GetAllStudents();
         public Student GetStudentByID(String StudentID) => StudentDAO.GetStudentById(StudentID);
-        public Student CreateStudent(Student student) => StudentDAO.CreateStudent(student);
+        public Student CreateStudent(StudentDTO studentDTO)
+        {
+            var studentCount = StudentDAO.GetAllStudents().Count;
+            var student = new Student
+            {
+                StudentId = "Student" + (studentCount + 1),
+                StudentName = studentDTO.StudentName,
+                Email = studentDTO.Email,
+                Password = studentDTO.Password,
+                Address = studentDTO.Address,
+                Phone = studentDTO.Phone,
+                DateOfBirth = studentDTO.DateOfBirth,
+                Status = false,
+                CreateDate = DateTime.Now,
+                StudentSemesterId = "ss1",
+            };
+            return StudentDAO.CreateStudent(student);
+        }
         public void UpdateStudent(Student student) => StudentDAO.UpdateStudent(student);
         public void DeleteStudent(String StudentID) => StudentDAO.DeleteStudent(StudentID);
+
+        public void UpdateStudentStatus(String studentId) => StudentDAO.UpdateStudentStatus(studentId);
     }
 }
