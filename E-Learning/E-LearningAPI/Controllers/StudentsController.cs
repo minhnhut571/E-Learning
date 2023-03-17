@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-
 namespace E_LearningAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -121,6 +121,7 @@ namespace E_LearningAPI.Controllers
         private void SendEmailToStudent(string studentEmail)
         {
             // set up sender and recipient addresses
+
             MailAddress fromAddress = new MailAddress("jobsharingvn24h@gmail.com", "Job Sharing VN24H");
             MailAddress toAddress = new MailAddress(studentEmail, "Recipient Name");
 
@@ -130,12 +131,17 @@ namespace E_LearningAPI.Controllers
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new NetworkCredential("jobsharingvn24h@gmail.com", "jzxbegcswrpffnek");
-
+            // read HTML file into a string variable
+            string htmlBody;
+            using (StreamReader reader = new StreamReader(@"D:\SWD\SourcCode\Github\E-Learning\E-Learning\E-LearningAPI\sendMail.html"))
+            {
+                htmlBody = reader.ReadToEnd();
+            }
             // create email message
             MailMessage message = new MailMessage(fromAddress, toAddress);
             message.Subject = "Check Email";
-            message.Body = "hello";
-
+            message.Body = htmlBody;
+            message.IsBodyHtml = true;
             // send email
             smtpClient.Send(message);
         }
