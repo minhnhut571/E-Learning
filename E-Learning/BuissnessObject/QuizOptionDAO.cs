@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class QuizOptionDTO
+    {
+        public string QuestionId { get; set; }
+        public string OptionText { get; set; }
+    }
     public class QuizOptionDAO
     {
         public static List<QuizOption> GetAllQuizOptions()

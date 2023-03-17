@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<Result> GetResults();
         public Result GetResultByID(String ResultID);
-        public Result CreateResult(Result Result);
-        public void UpdateResult(Result Result);
+        public Result CreateResult(ResultDTO Result);
+        public void UpdateResult(ResultDTO Result);
         public void DeleteResult(String ResultID);
     }
 }

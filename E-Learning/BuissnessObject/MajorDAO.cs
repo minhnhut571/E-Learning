@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class MajorDTO
+    {
+        public string MajorName { get; set; }
+    }
     public class MajorDAO
     {
         public static List<Major> GetAllMajors()

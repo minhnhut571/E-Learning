@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<Course> GetCourses();
         public Course GetCourseByID(String CourseID);
-        public Course CreateCourse(Course Course);
-        public void UpdateCourse(Course Course);
+        public Course CreateCourse(CourseDTO Course);
+        public void UpdateCourse(CourseDTO Course);
         public void DeleteCourse(String CourseID);
     }
 }

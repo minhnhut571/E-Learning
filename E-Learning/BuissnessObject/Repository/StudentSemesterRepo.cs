@@ -11,8 +11,24 @@ namespace BuissnessObject.Repository
     {
         public List<StudentSemester> GetStudentSemesters() => StudentSemesterDAO.GetAllStudentSemesters();
         public StudentSemester GetStudentSemesterByID(String StudentSemesterID) => StudentSemesterDAO.GetStudentSemesterById(StudentSemesterID);
-        public StudentSemester CreateStudentSemester(StudentSemester StudentSemester) => StudentSemesterDAO.CreateStudentSemester(StudentSemester);
-        public void UpdateStudentSemester(StudentSemester StudentSemester) => StudentSemesterDAO.UpdateStudentSemester(StudentSemester);
+        public StudentSemester CreateStudentSemester(StudentSemesterDTO StudentSemesterDTO)
+        {
+            var StudentSemesterCount = StudentSemesterDAO.GetAllStudentSemesters().Count;
+            var StudentSemester = new StudentSemester()
+            {
+                StudentSemesterId = "StudentSemester" + (StudentSemesterCount + 1),
+                Name = StudentSemesterDTO.Name
+            };
+            return StudentSemesterDAO.CreateStudentSemester(StudentSemester);
+        }
+        public void UpdateStudentSemester(StudentSemesterDTO StudentSemesterDTO)
+        {
+            var StudentSemester = new StudentSemester()
+            {
+                Name = StudentSemesterDTO.Name
+            };
+            StudentSemesterDAO.UpdateStudentSemester(StudentSemester);
+        }
         public void DeleteStudentSemester(String StudentSemesterID) => StudentSemesterDAO.DeleteStudentSemester(StudentSemesterID);
     }
 }

@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class StudentSemesterDTO
+    {
+        public string Name { get; set; }
+    }
     public class StudentSemesterDAO
     {
         public static List<StudentSemester> GetAllStudentSemesters()

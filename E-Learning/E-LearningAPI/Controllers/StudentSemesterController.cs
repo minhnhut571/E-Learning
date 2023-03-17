@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Models;
 using BuissnessObject.Repository;
+using BuissnessObject;
 
 namespace E_LearningAPI.Controllers
 {
@@ -44,13 +45,8 @@ namespace E_LearningAPI.Controllers
         // PUT: api/StudentSemesters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudentSemester(string id, StudentSemester StudentSemester)
+        public async Task<IActionResult> PutStudentSemester(string id, StudentSemesterDTO  StudentSemester)
         {
-            if (id != StudentSemester.StudentSemesterId)
-            {
-                return BadRequest();
-            }
-
             try
             {
                 StudentSemesterRepo.UpdateStudentSemester(StudentSemester);
@@ -73,7 +69,7 @@ namespace E_LearningAPI.Controllers
         // POST: api/StudentSemesters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<StudentSemester>> PostStudentSemester(StudentSemester StudentSemester)
+        public async Task<ActionResult<StudentSemester>> PostStudentSemester(StudentSemesterDTO StudentSemester)
         {
             try
             {

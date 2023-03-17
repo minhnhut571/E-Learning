@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Models;
 using BuissnessObject.Repository;
+using BuissnessObject;
 
 namespace E_LearningAPI.Controllers
 {
@@ -44,12 +45,8 @@ namespace E_LearningAPI.Controllers
         // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourse(string id, Course Course)
+        public async Task<IActionResult> PutCourse(string id, CourseDTO Course)
         {
-            if (id != Course.CourseId)
-            {
-                return BadRequest();
-            }
 
             try
             {
@@ -73,7 +70,7 @@ namespace E_LearningAPI.Controllers
         // POST: api/Courses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Course>> PostCourse(Course Course)
+        public async Task<ActionResult<Course>> PostCourse(CourseDTO Course)
         {
             try
             {

@@ -15,6 +15,19 @@ namespace BuissnessObject
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
     }
+
+    public class StudentUpdateDTO
+    {
+        public string StudentName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public bool Status { get; set; }
+        public string StudentSemesterId { get; set; }
+    }
+
     public class StudentDAO
     {
 

@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<ResultDetail> GetResultDetails();
         public ResultDetail GetResultDetailByID(String ResultID, String QuestionID);
-        public ResultDetail CreateResultDetail(ResultDetail ResultDetail);
-        public void UpdateResultDetail(ResultDetail ResultDetail);
+        public ResultDetail CreateResultDetail(ResultDetailDTO ResultDetail);
+        public void UpdateResultDetail(ResultDetailDTO ResultDetail);
         public void DeleteResultDetail(String ResultID, String QuestionID);
     }
 }

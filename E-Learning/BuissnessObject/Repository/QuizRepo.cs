@@ -11,8 +11,30 @@ namespace BuissnessObject.Repository
     {
         public List<Quiz> GetQuizs() => QuizDAO.GetAllQuizs();
         public Quiz GetQuizByID(String QuizID) => QuizDAO.GetQuizById(QuizID);
-        public Quiz CreateQuiz(Quiz Quiz) => QuizDAO.CreateQuiz(Quiz);
-        public void UpdateQuiz(Quiz Quiz) => QuizDAO.UpdateQuiz(Quiz);
+        public Quiz CreateQuiz(QuizDTO QuizDTO)
+        {
+            var QuizCount = QuizDAO.GetAllQuizs().Count;
+            var Quiz = new Quiz()
+            {
+                QuizId = "Quiz" + (QuizCount + 1),
+                StudentName = QuizDTO.StudentName,
+                CourseId = QuizDTO.CourseId,
+                EndDate = QuizDTO.EndDate,
+                StartDate = QuizDTO.StartDate
+            };
+            return QuizDAO.CreateQuiz(Quiz);
+        }
+        public void UpdateQuiz(QuizDTO QuizDTO)
+        {
+            var Quiz = new Quiz()
+            {
+                StudentName = QuizDTO.StudentName,
+                CourseId = QuizDTO.CourseId,
+                EndDate = QuizDTO.EndDate,
+                StartDate = QuizDTO.StartDate
+            };
+            QuizDAO.UpdateQuiz(Quiz);
+        }
         public void DeleteQuiz(String QuizID) => QuizDAO.DeleteQuiz(QuizID);
     }
 }

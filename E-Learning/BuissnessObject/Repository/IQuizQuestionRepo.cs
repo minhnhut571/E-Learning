@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<QuizQuestion> GetQuizQuestions();
         public QuizQuestion GetQuizQuestionByID(String QuestionID);
-        public QuizQuestion CreateQuizQuestion(QuizQuestion quizQuestion);
-        public void UpdateQuizQuestion(QuizQuestion quizQuestion);
+        public QuizQuestion CreateQuizQuestion(QuizQuestionDTO quizQuestion);
+        public void UpdateQuizQuestion(QuizQuestionDTO quizQuestion);
         public void DeleteQuizQuestion(String QuestionID);
     }
 }

@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class CourseDTO
+    {
+        public string TeacherId { get; set; }
+        public DateTime Time { get; set; }
+        public string SubjectId { get; set; }
+        public string LinkCourse { get; set; }
+    }
     public class CourseDAO
     {
         public static List<Course> GetAllCourses()

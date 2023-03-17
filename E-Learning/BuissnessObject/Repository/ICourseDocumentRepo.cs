@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<CourseDocument> GetCourseDocuments();
         public CourseDocument GetCourseDocumentByID(String CourseID);
-        public CourseDocument CreateCourseDocument(CourseDocument CourseDocument);
-        public void UpdateCourseDocument(CourseDocument CourseDocument);
+        public CourseDocument CreateCourseDocument(CourseDocumentDTO CourseDocument);
+        public void UpdateCourseDocument(CourseDocumentDTO CourseDocument);
         public void DeleteCourseDocument(String CourseID);
     }
 }

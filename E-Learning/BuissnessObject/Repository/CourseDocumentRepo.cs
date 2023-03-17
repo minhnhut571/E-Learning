@@ -11,8 +11,30 @@ namespace BuissnessObject.Repository
     {
         public List<CourseDocument> GetCourseDocuments() => CourseDocumentDAO.GetAllCourseDocuments();
         public CourseDocument GetCourseDocumentByID(String CourseID) => CourseDocumentDAO.GetCourseDocumentById(CourseID);
-        public CourseDocument CreateCourseDocument(CourseDocument CourseDocument) => CourseDocumentDAO.CreateCourseDocument(CourseDocument);
-        public void UpdateCourseDocument(CourseDocument CourseDocument) => CourseDocumentDAO.UpdateCourseDocument(CourseDocument);
+        public CourseDocument CreateCourseDocument(CourseDocumentDTO CourseDocumentDTO)
+        {
+            var CourseDocumentCount = CourseDocumentDAO.GetAllCourseDocuments().Count;
+            var CourseDocument = new CourseDocument()
+            {
+                DocumentId = "CourseDocument" + (CourseDocumentCount + 1),
+                CourseId = CourseDocumentDTO.CourseId,
+                Defination = CourseDocumentDTO.Defination,
+                Title = CourseDocumentDTO.Title,
+                Video = CourseDocumentDTO.Video
+            };
+            return CourseDocumentDAO.CreateCourseDocument(CourseDocument);
+        }
+        public void UpdateCourseDocument(CourseDocumentDTO CourseDocumentDTO)
+        {
+            var CourseDocument = new CourseDocument()
+            {
+                CourseId = CourseDocumentDTO.CourseId,
+                Defination = CourseDocumentDTO.Defination,
+                Title = CourseDocumentDTO.Title,
+                Video = CourseDocumentDTO.Video
+            };
+            CourseDocumentDAO.UpdateCourseDocument(CourseDocument);
+        }
         public void DeleteCourseDocument(String CourseID) => CourseDocumentDAO.DeleteCourseDocument(CourseID);
     }
 }

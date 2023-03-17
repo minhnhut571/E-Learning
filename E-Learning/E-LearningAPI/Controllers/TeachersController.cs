@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Models;
 using BuissnessObject.Repository;
+using BuissnessObject;
 
 namespace E_LearningAPI.Controllers
 {
@@ -44,12 +45,8 @@ namespace E_LearningAPI.Controllers
         // PUT: api/Teachers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeacher(string id, Teacher Teacher)
+        public async Task<IActionResult> PutTeacher(string id, TeacherUpdateDTO Teacher)
         {
-            if (id != Teacher.TeacherId)
-            {
-                return BadRequest();
-            }
 
             try
             {
@@ -73,25 +70,16 @@ namespace E_LearningAPI.Controllers
         // POST: api/Teachers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Teacher>> PostTeacher(Teacher Teacher)
+        public async Task<ActionResult<Teacher>> PostTeacher(TeacherDTO Teacher)
         {
             try
             {
-                TeacherRepo.CreateTeacher(Teacher);
+                return Ok(TeacherRepo.CreateTeacher(Teacher));
             }
-            catch (DbUpdateException)
+            catch (Exception ex)
             {
-                if (TeacherExists(Teacher.TeacherId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
-
-            return CreatedAtAction("GetTeacher", new { id = Teacher.TeacherId }, Teacher);
         }
 
         // DELETE: api/Teachers/5

@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class ResultDTO
+    {
+        public string QuizId { get; set; }
+        public string StudentName { get; set; }
+        public int CorrectQuestion { get; set; }
+        public double Point { get; set; }
+    }
     public class ResultDAO
     {
         public static List<Result> GetAllResults()

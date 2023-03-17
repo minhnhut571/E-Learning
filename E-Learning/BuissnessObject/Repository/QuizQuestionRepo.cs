@@ -11,8 +11,28 @@ namespace BuissnessObject.Repository
     {
         public List<QuizQuestion> GetQuizQuestions() => QuizQuestionDAO.GetAllQuizQuestions();
         public QuizQuestion GetQuizQuestionByID(String QuizQuestionID) => QuizQuestionDAO.GetQuizQuestionById(QuizQuestionID);
-        public QuizQuestion CreateQuizQuestion(QuizQuestion QuizQuestion) => QuizQuestionDAO.CreateQuizQuestion(QuizQuestion);
-        public void UpdateQuizQuestion(QuizQuestion QuizQuestion) => QuizQuestionDAO.UpdateQuizQuestion(QuizQuestion);
+        public QuizQuestion CreateQuizQuestion(QuizQuestionDTO QuizQuestionDTO)
+        {
+            var QuizQuestionCount = QuizQuestionDAO.GetAllQuizQuestions().Count;
+            var QuizQuestion = new QuizQuestion()
+            {
+                QuestionId = "QuizQuestion" + (QuizQuestionCount + 1),
+                Question = QuizQuestionDTO.Question,
+                QuizId = QuizQuestionDTO.QuizId,
+                Answer = QuizQuestionDTO.Answer
+            };
+            return QuizQuestionDAO.CreateQuizQuestion(QuizQuestion);
+        }
+        public void UpdateQuizQuestion(QuizQuestionDTO QuizQuestionDTO)
+        {
+            var QuizQuestion = new QuizQuestion()
+            {
+                Question = QuizQuestionDTO.Question,
+                QuizId = QuizQuestionDTO.QuizId,
+                Answer = QuizQuestionDTO.Answer
+            };
+            QuizQuestionDAO.UpdateQuizQuestion(QuizQuestion);
+        }
         public void DeleteQuizQuestion(String QuizQuestionID) => QuizQuestionDAO.DeleteQuizQuestion(QuizQuestionID);
     }
 }

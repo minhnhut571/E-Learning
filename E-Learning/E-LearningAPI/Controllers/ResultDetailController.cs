@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Models;
 using BuissnessObject.Repository;
+using BuissnessObject;
 
 namespace E_LearningAPI.Controllers
 {
@@ -44,7 +45,7 @@ namespace E_LearningAPI.Controllers
         // PUT: api/ResultDetails/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{ResultID},{QuestionID}")]
-        public async Task<IActionResult> PutResultDetail(string ResultID, string QuestionID, ResultDetail ResultDetail)
+        public async Task<IActionResult> PutResultDetail(string ResultID, string QuestionID, ResultDetailDTO ResultDetail)
         {
             if (ResultID != ResultDetail.ResultId)
             {
@@ -66,7 +67,7 @@ namespace E_LearningAPI.Controllers
         // POST: api/ResultDetails
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ResultDetail>> PostResultDetail(ResultDetail ResultDetail)
+        public async Task<ActionResult<ResultDetail>> PostResultDetail(ResultDetailDTO ResultDetail)
         {
             try
             {

@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class SubjectItemDTO
+    {
+        public string SubjectId { get; set; }
+        public string StudentId { get; set; }
+    }
+
     public class SubjectItemDAO
     {
         public static List<SubjectItem> GetAllSubjectItems()

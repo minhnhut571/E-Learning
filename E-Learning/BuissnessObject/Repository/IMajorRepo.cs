@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<Major> GetMajors();
         public Major GetMajorByID(String MajorID);
-        public Major CreateMajor(Major Major);
-        public void UpdateMajor(Major Major);
+        public Major CreateMajor(MajorDTO Major);
+        public void UpdateMajor(MajorDTO Major);
         public void DeleteMajor(String MajorID);
     }
 }

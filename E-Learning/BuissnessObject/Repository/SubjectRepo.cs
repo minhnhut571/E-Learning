@@ -11,8 +11,32 @@ namespace BuissnessObject.Repository
     {
         public List<Subject> GetSubjects() => SubjectDAO.GetAllSubjects();
         public Subject GetSubjectByID(String SubjectID) => SubjectDAO.GetSubjectById(SubjectID);
-        public Subject CreateSubject(Subject Subject) => SubjectDAO.CreateSubject(Subject);
-        public void UpdateSubject(Subject Subject) => SubjectDAO.UpdateSubject(Subject);
+        public Subject CreateSubject(SubjectDTO SubjectDTO)
+        {
+            var SubjectCount = SubjectDAO.GetAllSubjects().Count;
+            var Subject = new Subject()
+            {
+                SubjectId = "Subject" + (SubjectCount + 1),
+                SubjectName = SubjectDTO.SubjectName,
+                MajorId = SubjectDTO.MajorId,
+                SemesterId = SubjectDTO.SemesterId,
+                StudentSemesterId = SubjectDTO.StudentSemesterId,
+                TeacherId = SubjectDTO.TeacherId               
+            };
+            return SubjectDAO.CreateSubject(Subject);
+        }
+        public void UpdateSubject(SubjectDTO SubjectDTO)
+        {
+            var Subject = new Subject()
+            {
+                SubjectName = SubjectDTO.SubjectName,
+                MajorId = SubjectDTO.MajorId,
+                SemesterId = SubjectDTO.SemesterId,
+                StudentSemesterId = SubjectDTO.StudentSemesterId,
+                TeacherId = SubjectDTO.TeacherId
+            };
+            SubjectDAO.UpdateSubject(Subject);
+        }
         public void DeleteSubject(String SubjectID) => SubjectDAO.DeleteSubject(SubjectID);
     }
 }

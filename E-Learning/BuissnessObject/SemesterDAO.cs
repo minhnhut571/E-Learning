@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class SemesterDTO
+    {
+        public string SemesterName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
     public class SemesterDAO
     {
         public static List<Semester> GetAllSemesters()

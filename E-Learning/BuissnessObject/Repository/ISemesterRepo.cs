@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<Semester> GetSemesters();
         public Semester GetSemesterByID(String SemesterID);
-        public Semester CreateSemester(Semester Semester);
-        public void UpdateSemester(Semester Semester);
+        public Semester CreateSemester(SemesterDTO Semester);
+        public void UpdateSemester(SemesterDTO Semester);
         public void DeleteSemester(String SemesterID);
     }
 }

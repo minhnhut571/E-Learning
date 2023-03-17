@@ -26,7 +26,21 @@ namespace BuissnessObject.Repository
             };
             return StudentDAO.CreateStudent(student);
         }
-        public void UpdateStudent(Student student) => StudentDAO.UpdateStudent(student);
+        public void UpdateStudent(StudentUpdateDTO studentUpdateDTO)
+        {
+            var student = new Student
+            {
+                StudentName = studentUpdateDTO.StudentName,
+                Email = studentUpdateDTO.Email,
+                Password = studentUpdateDTO.Password,
+                Address = studentUpdateDTO.Address,
+                Phone = studentUpdateDTO.Phone,
+                DateOfBirth = studentUpdateDTO.DateOfBirth,
+                Status = studentUpdateDTO.Status,
+                StudentSemesterId = studentUpdateDTO.StudentSemesterId
+            };
+            StudentDAO.UpdateStudent(student);
+        }
         public void DeleteStudent(String StudentID) => StudentDAO.DeleteStudent(StudentID);
 
         public void UpdateStudentStatus(String studentId) => StudentDAO.UpdateStudentStatus(studentId);

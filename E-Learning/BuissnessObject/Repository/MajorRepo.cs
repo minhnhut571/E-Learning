@@ -11,8 +11,24 @@ namespace BuissnessObject.Repository
     {
         public List<Major> GetMajors() => MajorDAO.GetAllMajors();
         public Major GetMajorByID(String MajorID) => MajorDAO.GetMajorById(MajorID);
-        public Major CreateMajor(Major Major) => MajorDAO.CreateMajor(Major);
-        public void UpdateMajor(Major Major) => MajorDAO.UpdateMajor(Major);
+        public Major CreateMajor(MajorDTO MajorDTO)
+        {
+            var MajorCount = MajorDAO.GetAllMajors().Count;
+            var Major = new Major()
+            {
+                MajorId = "Major" + (MajorCount + 1),
+                MajorName = MajorDTO.MajorName
+            };
+            return MajorDAO.CreateMajor(Major);
+        }
+        public void UpdateMajor(MajorDTO MajorDTO)
+        {
+            var Major = new Major()
+            {
+                MajorName = MajorDTO.MajorName
+            };
+            MajorDAO.UpdateMajor(Major);
+        }
         public void DeleteMajor(String MajorID) => MajorDAO.DeleteMajor(MajorID);
     }
 }

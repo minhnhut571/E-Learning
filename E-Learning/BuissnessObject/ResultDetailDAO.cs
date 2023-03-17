@@ -9,6 +9,16 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class ResultDetailDTO
+    {
+        public string ResultId { get; set; }
+
+        public string OptionId { get; set; }
+        public string QuestionId { get; set; }
+        public string Question { get; set; }
+        public string OptionText { get; set; }
+        public bool IsCorrect { get; set; }
+    }
     public class ResultDetailDAO
     {
         public static List<ResultDetail> GetAllResultDetails()

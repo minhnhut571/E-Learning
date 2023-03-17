@@ -11,8 +11,30 @@ namespace BuissnessObject.Repository
     {
         public List<Course> GetCourses() => CourseDAO.GetAllCourses();
         public Course GetCourseByID(String CourseID) => CourseDAO.GetCourseById(CourseID);
-        public Course CreateCourse(Course Course) => CourseDAO.CreateCourse(Course);
-        public void UpdateCourse(Course Course) => CourseDAO.UpdateCourse(Course);
+        public Course CreateCourse(CourseDTO CourseDTO)
+        {
+            var CourseCount = CourseDAO.GetAllCourses().Count;
+            var Course = new Course()
+            {
+                CourseId = "Course" + (CourseCount + 1),
+                LinkCourse = CourseDTO.LinkCourse,
+                SubjectId = CourseDTO.SubjectId,
+                TeacherId = CourseDTO.TeacherId,
+                Time = CourseDTO.Time
+            };
+            return CourseDAO.CreateCourse(Course);
+        }
+        public void UpdateCourse(CourseDTO CourseDTO)
+        {
+            var Course = new Course()
+            {
+                LinkCourse = CourseDTO.LinkCourse,
+                SubjectId = CourseDTO.SubjectId,
+                TeacherId = CourseDTO.TeacherId,
+                Time = CourseDTO.Time
+            };
+            CourseDAO.UpdateCourse(Course);
+        }
         public void DeleteCourse(String CourseID) => CourseDAO.DeleteCourse(CourseID);
     }
 }

@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<Teacher> GetTeachers();
         public Teacher GetTeacherByID(String TeacherID);
-        public Teacher CreateTeacher(Teacher teacher);
-        public void UpdateTeacher(Teacher teacher);
+        public Teacher CreateTeacher(TeacherDTO teacher);
+        public void UpdateTeacher(TeacherUpdateDTO teacherUpdateDTO);
         public void DeleteTeacher(String TeacherID);
     }
 }

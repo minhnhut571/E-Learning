@@ -11,8 +11,8 @@ namespace BuissnessObject.Repository
     {
         public List<Subject> GetSubjects();
         public Subject GetSubjectByID(String SubjectID);
-        public Subject CreateSubject(Subject Subject);
-        public void UpdateSubject(Subject Subject);
+        public Subject CreateSubject(SubjectDTO SubjectDTO);
+        public void UpdateSubject(SubjectDTO SubjectDTO);
         public void DeleteSubject(String SubjectID);
     }
 }

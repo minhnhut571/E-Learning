@@ -9,6 +9,28 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+
+    public class TeacherDTO
+    {
+        public string TeacherName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public DateTime DateOfBirth { get; set; }
+    }
+
+    public class TeacherUpdateDTO
+    {
+        public string TeacherName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public bool Status { get; set; }
+    }
+
     public class TeacherDAO
     {
         public static List<Teacher> GetAllTeachers()

@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace BuissnessObject
 {
+    public class QuizDTO
+    {
+        public string StudentName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string CourseId { get; set; }
+    }
     public class QuizDAO
     {
         public static List<Quiz> GetAllQuizs()
