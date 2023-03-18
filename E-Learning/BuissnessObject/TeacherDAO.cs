@@ -22,6 +22,7 @@ namespace BuissnessObject
 
     public class TeacherUpdateDTO
     {
+        public string TeacherID { get; set; }
         public string TeacherName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -29,6 +30,7 @@ namespace BuissnessObject
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
         public bool Status { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 
     public class TeacherDAO
@@ -45,7 +47,7 @@ namespace BuissnessObject
         {
             using (var db = new ECourseDBContext())
             {
-                return db.Teachers.FirstOrDefault(s => s.TeacherId == TeacherID && s.Status == true);
+                return db.Teachers.FirstOrDefault(s => s.TeacherId == TeacherID);
             }
         }
 
@@ -60,7 +62,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.TeacherError.TEACHER_EXITED);
                     }
                     db.Teachers.Add(teacher);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return teacher;
                 }
                 catch(Exception ex)
@@ -82,7 +84,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.TeacherError.TEACHER_IS_NOT_EXITED);
                     }
                     db.Teachers.Update(teacher);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -102,8 +104,12 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.TeacherError.TEACHER_IS_NOT_EXITED);
                     }
                     Teacher teacher = GetTeacherById(TeacherID);
-                    db.Teachers.Remove(teacher);
-                    db.SaveChangesAsync();
+                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.TeacherId == teacher.TeacherId);
+                    foreach (var subject in subjects)
+                        SubjectDAO.DeleteSubject(subject.SubjectId);
+                    teacher.Status = false;
+                    db.Teachers.Update(teacher);
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

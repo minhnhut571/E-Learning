@@ -18,6 +18,7 @@ namespace BuissnessObject
 
     public class StudentUpdateDTO
     {
+        public string StudentID { get; set; }
         public string StudentName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -90,6 +91,8 @@ namespace BuissnessObject
                     }
 
                     student.Status = false;
+                    List<SubjectItem> subjectItems = db.SubjectItems.ToList().FindAll(s => s.StudentId == StudentID);
+                    db.SubjectItems.RemoveRange(subjectItems);
                     db.Students.Update(student);
                     db.SaveChanges();
                 }

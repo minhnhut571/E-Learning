@@ -23,10 +23,11 @@ namespace BuissnessObject.Repository
             };
             return SemesterDAO.CreateSemester(Semester);
         }
-        public void UpdateSemester(SemesterDTO SemesterDTO)
+        public void UpdateSemester(SemesterUpdateDTO SemesterDTO)
         {
             var Semester = new Semester()
             {
+                SemesterId = SemesterDTO.SemesterID,
                 SemesterName = SemesterDTO.SemesterName,
                 StartDate = SemesterDTO.StartDate,
                 EndDate = SemesterDTO.EndDate

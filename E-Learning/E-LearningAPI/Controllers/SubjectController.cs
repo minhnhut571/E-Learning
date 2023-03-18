@@ -44,24 +44,17 @@ namespace E_LearningAPI.Controllers
 
         // PUT: api/Subjects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSubject(string id, SubjectDTO Subject)
+        [HttpPut]
+        public async Task<IActionResult> PutSubject(SubjectUpdateDTO Subject)
         {
 
             try
             {
                 SubjectRepo.UpdateSubject(Subject);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!SubjectExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
             return NoContent();

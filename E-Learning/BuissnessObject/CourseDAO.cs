@@ -8,9 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BuissnessObject
-{
+{  
     public class CourseDTO
     {
+        public string TeacherId { get; set; }
+        public DateTime Time { get; set; }
+        public string SubjectId { get; set; }
+        public string LinkCourse { get; set; }
+    }
+
+    public class CourseUpdateDTO
+    {
+        public string CourseID { get; set; }
         public string TeacherId { get; set; }
         public DateTime Time { get; set; }
         public string SubjectId { get; set; }
@@ -45,7 +54,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.CourseError.COURSE_EXITED);
                     }
                     db.Courses.Add(Course);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return Course;
                 }
                 catch (Exception ex)
@@ -67,7 +76,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.CourseError.COURSE_IS_NOT_EXITED);
                     }
                     db.Courses.Update(Course);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -82,13 +91,18 @@ namespace BuissnessObject
             {
                 try
                 {
-                    if (GetCourseById(CourseID) == null)
+                    Course Course = GetCourseById(CourseID);
+                    if (Course == null)
                     {
                         throw new Exception(ErrorMessage.CourseError.COURSE_IS_NOT_EXITED);
                     }
-                    Course Course = GetCourseById(CourseID);
+                    List<CourseDocument> courseDocument = db.CourseDocuments.ToList().FindAll(s => s.CourseId == Course.CourseId);
+                    db.CourseDocuments.RemoveRange(courseDocument);
+                    List<Quiz> quizzes = db.Quizzes.ToList().FindAll(s => s.CourseId == CourseID);
+                    foreach (var quiz in quizzes)
+                        QuizDAO.DeleteQuiz(quiz.QuizId);
                     db.Courses.Remove(Course);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

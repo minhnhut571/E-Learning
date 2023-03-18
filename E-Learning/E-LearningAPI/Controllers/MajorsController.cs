@@ -44,24 +44,17 @@ namespace E_LearningAPI.Controllers
 
         // PUT: api/Majors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMajor(string id, MajorDTO Major)
+        [HttpPut]
+        public async Task<IActionResult> PutMajor(MajorUpdateDTO Major)
         {
 
             try
             {
                 MajorRepo.UpdateMajor(Major);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!MajorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
             return NoContent();

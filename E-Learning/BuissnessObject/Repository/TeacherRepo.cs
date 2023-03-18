@@ -32,13 +32,15 @@ namespace BuissnessObject.Repository
         {
             var teacher = new Teacher()
             {
+                TeacherId = teacherUpdateDTO.TeacherID,
                 TeacherName = teacherUpdateDTO.TeacherName,
                 Email = teacherUpdateDTO.Email,
                 Password = teacherUpdateDTO.Password,
                 Phone = teacherUpdateDTO.Phone,
                 DateOfBirth = teacherUpdateDTO.DateOfBirth,
                 Status = teacherUpdateDTO.Status,
-                Address = teacherUpdateDTO.Address
+                Address = teacherUpdateDTO.Address,
+                CreateDate = teacherUpdateDTO.CreateDate
             };
             TeacherDAO.UpdateTeacher(teacher);
         }

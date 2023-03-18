@@ -25,10 +25,11 @@ namespace BuissnessObject.Repository
             };
             return SubjectDAO.CreateSubject(Subject);
         }
-        public void UpdateSubject(SubjectDTO SubjectDTO)
+        public void UpdateSubject(SubjectUpdateDTO SubjectDTO)
         {
             var Subject = new Subject()
             {
+                SubjectId = SubjectDTO.SubjectID,
                 SubjectName = SubjectDTO.SubjectName,
                 MajorId = SubjectDTO.MajorId,
                 SemesterId = SubjectDTO.SemesterId,

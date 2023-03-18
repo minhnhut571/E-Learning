@@ -16,6 +16,14 @@ namespace BuissnessObject
         public DateTime EndDate { get; set; }
         public string CourseId { get; set; }
     }
+    public class QuizUpdateDTO
+    {
+        public string QuizID { get; set; }
+        public string StudentName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string CourseId { get; set; }
+    }
     public class QuizDAO
     {
         public static List<Quiz> GetAllQuizs()
@@ -45,7 +53,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizError.QUIZ_EXITED);
                     }
                     db.Quizzes.Add(Quiz);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return Quiz;
                 }
                 catch (Exception ex)
@@ -67,7 +75,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizError.QUIZ_IS_NOT_EXITED);
                     }
                     db.Quizzes.Update(Quiz);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -87,8 +95,11 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizError.QUIZ_IS_NOT_EXITED);
                     }
                     Quiz Quiz = GetQuizById(QuizID);
+                    List<QuizQuestion> quizQuestion = db.QuizQuestions.ToList().FindAll(s => s.QuizId == Quiz.QuizId);
+                    foreach (var question in quizQuestion)
+                        QuizQuestionDAO.DeleteQuizQuestion(question.QuestionId);
                     db.Quizzes.Remove(Quiz);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

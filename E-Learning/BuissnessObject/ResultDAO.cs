@@ -3,6 +3,7 @@ using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,16 @@ namespace BuissnessObject
         public int CorrectQuestion { get; set; }
         public double Point { get; set; }
     }
+
+    public class ResultUpdateDTO
+    {
+        public string ResultID { get; set; }
+        public string QuizId { get; set; }
+        public string StudentName { get; set; }
+        public int CorrectQuestion { get; set; }
+        public double Point { get; set; }
+    }
+
     public class ResultDAO
     {
         public static List<Result> GetAllResults()
@@ -45,7 +56,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.ResultError.RESULT_EXITED);
                     }
                     db.Results.Add(Result);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return Result;
                 }
                 catch (Exception ex)
@@ -67,7 +78,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.ResultError.RESULT_IS_NOT_EXITED);
                     }
                     db.Results.Update(Result);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -87,8 +98,10 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.ResultError.RESULT_IS_NOT_EXITED);
                     }
                     Result Result = GetResultById(ResultID);
+                    List<ResultDetail> resultDetails = db.ResultDetails.ToList().FindAll(s => s.ResultId == Result.ResultId);
+                    db.ResultDetails.RemoveRange(resultDetails);
                     db.Results.Remove(Result);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

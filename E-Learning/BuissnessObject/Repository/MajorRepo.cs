@@ -21,10 +21,11 @@ namespace BuissnessObject.Repository
             };
             return MajorDAO.CreateMajor(Major);
         }
-        public void UpdateMajor(MajorDTO MajorDTO)
+        public void UpdateMajor(MajorUpdateDTO MajorDTO)
         {
             var Major = new Major()
             {
+                MajorId = MajorDTO.MajorID,
                 MajorName = MajorDTO.MajorName
             };
             MajorDAO.UpdateMajor(Major);

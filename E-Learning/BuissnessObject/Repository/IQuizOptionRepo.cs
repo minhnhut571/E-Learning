@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<QuizOption> GetQuizOptions();
         public QuizOption GetQuizOptionByID(String OptionID);
         public QuizOption CreateQuizOption(QuizOptionDTO quizOption);
-        public void UpdateQuizOption(QuizOptionDTO quizOption);
+        public void UpdateQuizOption(QuizOptionUpdateDTO quizOption);
         public void DeleteQuizOption(String OptionID);
     }
 }

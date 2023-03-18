@@ -44,24 +44,17 @@ namespace E_LearningAPI.Controllers
 
         // PUT: api/Results/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutResult(string id, ResultDTO Result)
+        [HttpPut]
+        public async Task<IActionResult> PutResult(ResultUpdateDTO Result)
         {
 
             try
             {
                 ResultRepo.UpdateResult(Result);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!ResultExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
             return NoContent();

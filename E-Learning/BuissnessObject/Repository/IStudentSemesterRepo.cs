@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<StudentSemester> GetStudentSemesters();
         public StudentSemester GetStudentSemesterByID(String StudentSemesterID);
         public StudentSemester CreateStudentSemester(StudentSemesterDTO StudentSemester);
-        public void UpdateStudentSemester(StudentSemesterDTO StudentSemester);
+        public void UpdateStudentSemester(StudentSemesterUpdateDTO StudentSemester);
         public void DeleteStudentSemester(String StudentSemesterID);
     }
 }

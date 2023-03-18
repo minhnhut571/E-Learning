@@ -44,8 +44,8 @@ namespace E_LearningAPI.Controllers
 
         // PUT: api/CourseDocuments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourseDocument(string id, CourseDocumentDTO CourseDocument)
+        [HttpPut]
+        public async Task<IActionResult> PutCourseDocument(CourseDocumentUpdateDTO CourseDocument)
         {
 
             try

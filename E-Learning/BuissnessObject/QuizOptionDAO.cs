@@ -14,6 +14,13 @@ namespace BuissnessObject
         public string QuestionId { get; set; }
         public string OptionText { get; set; }
     }
+
+    public class QuizOptionUpdateDTO
+    {
+        public string OptionID { get; set; }
+        public string QuestionId { get; set; }
+        public string OptionText { get; set; }
+    }
     public class QuizOptionDAO
     {
         public static List<QuizOption> GetAllQuizOptions()
@@ -43,7 +50,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizOptionError.QUIZ_OPTION_EXITED);
                     }
                     db.QuizOptions.Add(QuizOption);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return QuizOption;
                 }
                 catch (Exception ex)
@@ -65,7 +72,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizOptionError.QUIZ_OPTION_IS_NOT_EXITED);
                     }
                     db.QuizOptions.Update(QuizOption);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -85,8 +92,10 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizOptionError.QUIZ_OPTION_IS_NOT_EXITED);
                     }
                     QuizOption QuizOption = GetQuizOptionById(QuizOptionID);
+                    List<ResultDetail> resultDetails = db.ResultDetails.ToList().FindAll(s => s.OptionId == QuizOption.OptionId);
+                    db.ResultDetails.RemoveRange(resultDetails);
                     db.QuizOptions.Remove(QuizOption);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

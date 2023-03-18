@@ -13,6 +13,11 @@ namespace BuissnessObject
     {
         public string MajorName { get; set; }
     }
+    public class MajorUpdateDTO
+    {
+        public string MajorID { get; set; }
+        public string MajorName { get; set; }
+    }
     public class MajorDAO
     {
         public static List<Major> GetAllMajors()
@@ -42,7 +47,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.MajorError.MAJOR_EXITED);
                     }
                     db.Majors.Add(Major);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return Major;
                 }
                 catch (Exception ex)
@@ -64,7 +69,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.MajorError.MAJOR_IS_NOT_EXITED);
                     }
                     db.Majors.Update(Major);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -84,8 +89,11 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.MajorError.MAJOR_IS_NOT_EXITED);
                     }
                     Major Major = GetMajorById(MajorID);
+                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.MajorId == MajorID);
+                    foreach (var subject in subjects)
+                        SubjectDAO.DeleteSubject(subject.SubjectId);
                     db.Majors.Remove(Major);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

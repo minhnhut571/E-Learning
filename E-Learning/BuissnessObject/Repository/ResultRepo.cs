@@ -24,10 +24,11 @@ namespace BuissnessObject.Repository
             };
             return ResultDAO.CreateResult(Result);
         }
-        public void UpdateResult(ResultDTO ResultDTO)
+        public void UpdateResult(ResultUpdateDTO ResultDTO)
         {
             var Result = new Result()
             {
+                ResultId = ResultDTO.ResultID,
                 CorrectQuestion = ResultDTO.CorrectQuestion,
                 Point = ResultDTO.Point,
                 QuizId = ResultDTO.QuizId,

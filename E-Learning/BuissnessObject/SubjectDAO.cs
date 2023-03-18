@@ -18,6 +18,16 @@ namespace BuissnessObject
         public string SemesterId { get; set; }
     }
 
+    public class SubjectUpdateDTO
+    {
+        public string SubjectID { get; set; }
+        public string SubjectName { get; set; }
+        public string MajorId { get; set; }
+        public string TeacherId { get; set; }
+        public string StudentSemesterId { get; set; }
+        public string SemesterId { get; set; }
+    }
+
     public class SubjectDAO
     {
         public static List<Subject> GetAllSubjects()
@@ -47,7 +57,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SubjectError.SUBJECT_EXITED);
                     }
                     db.Subjects.Add(Subject);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return Subject;
                 }
                 catch (Exception ex)
@@ -69,7 +79,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SubjectError.SUBJECT_IS_NOT_EXITED);
                     }
                     db.Subjects.Update(Subject);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -89,8 +99,13 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SubjectError.SUBJECT_IS_NOT_EXITED);
                     }
                     Subject Subject = GetSubjectById(SubjectID);
+                    List<SubjectItem> subjectItems = db.SubjectItems.ToList().FindAll(s => s.SubjectId == SubjectID);
+                    db.SubjectItems.RemoveRange(subjectItems);
+                    List<Course> courses = db.Courses.ToList().FindAll(s => s.SubjectId == SubjectID);
+                    foreach (var course in courses)
+                        CourseDAO.DeleteCourse(course.CourseId);
                     db.Subjects.Remove(Subject);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

@@ -44,24 +44,17 @@ namespace E_LearningAPI.Controllers
 
         // PUT: api/QuizOptions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutQuizOption(string id, QuizOptionDTO QuizOption)
+        [HttpPut]
+        public async Task<IActionResult> PutQuizOption(QuizOptionUpdateDTO QuizOption)
         {
 
             try
             {
                 QuizOptionRepo.UpdateQuizOption(QuizOption);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!QuizOptionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
             return NoContent();

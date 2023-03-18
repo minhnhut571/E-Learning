@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<Quiz> GetQuizs();
         public Quiz GetQuizByID(String QuizID);
         public Quiz CreateQuiz(QuizDTO quiz);
-        public void UpdateQuiz(QuizDTO quiz);
+        public void UpdateQuiz(QuizUpdateDTO quiz);
         public void DeleteQuiz(String QuizID);
     }
 }

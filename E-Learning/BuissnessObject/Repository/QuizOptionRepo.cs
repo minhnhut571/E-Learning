@@ -22,10 +22,11 @@ namespace BuissnessObject.Repository
             };
             return QuizOptionDAO.CreateQuizOption(QuizOption);
         }
-        public void UpdateQuizOption(QuizOptionDTO QuizOptionDTO)
+        public void UpdateQuizOption(QuizOptionUpdateDTO QuizOptionDTO)
         {
             var QuizOption = new QuizOption()
             {
+                OptionId = QuizOptionDTO.OptionID,
                 QuestionId = QuizOptionDTO.QuestionId,
                 OptionText = QuizOptionDTO.OptionText
             };

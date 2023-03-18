@@ -16,6 +16,14 @@ namespace BuissnessObject
         public string Defination { get; set; }
         public string Video { get; set; }
     }
+    public class CourseDocumentUpdateDTO
+    {
+        public string DocumentID { get; set; }
+        public string CourseId { get; set; }
+        public string Title { get; set; }
+        public string Defination { get; set; }
+        public string Video { get; set; }
+    }
     public class CourseDocumentDAO
     {
         public static List<CourseDocument> GetAllCourseDocuments()
@@ -45,7 +53,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.CourseDocumentError.COURSEDOCUMENT_EXITED);
                     }
                     db.CourseDocuments.Add(CourseDocument);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return CourseDocument;
                 }
                 catch (Exception ex)
@@ -67,7 +75,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.CourseDocumentError.COURSEDOCUMENT_IS_NOT_EXITED);
                     }
                     db.CourseDocuments.Update(CourseDocument);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -88,7 +96,7 @@ namespace BuissnessObject
                     }
                     CourseDocument CourseDocument = GetCourseDocumentById(CourseDocumentID);
                     db.CourseDocuments.Remove(CourseDocument);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

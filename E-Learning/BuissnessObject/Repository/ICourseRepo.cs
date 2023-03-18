@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<Course> GetCourses();
         public Course GetCourseByID(String CourseID);
         public Course CreateCourse(CourseDTO Course);
-        public void UpdateCourse(CourseDTO Course);
+        public void UpdateCourse(CourseUpdateDTO Course);
         public void DeleteCourse(String CourseID);
     }
 }

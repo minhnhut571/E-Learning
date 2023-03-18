@@ -21,10 +21,11 @@ namespace BuissnessObject.Repository
             };
             return StudentSemesterDAO.CreateStudentSemester(StudentSemester);
         }
-        public void UpdateStudentSemester(StudentSemesterDTO StudentSemesterDTO)
+        public void UpdateStudentSemester(StudentSemesterUpdateDTO StudentSemesterDTO)
         {
             var StudentSemester = new StudentSemester()
             {
+                StudentSemesterId = StudentSemesterDTO.StudentSemesterID,
                 Name = StudentSemesterDTO.Name
             };
             StudentSemesterDAO.UpdateStudentSemester(StudentSemester);

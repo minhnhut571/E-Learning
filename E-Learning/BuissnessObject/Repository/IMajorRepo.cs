@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<Major> GetMajors();
         public Major GetMajorByID(String MajorID);
         public Major CreateMajor(MajorDTO Major);
-        public void UpdateMajor(MajorDTO Major);
+        public void UpdateMajor(MajorUpdateDTO Major);
         public void DeleteMajor(String MajorID);
     }
 }

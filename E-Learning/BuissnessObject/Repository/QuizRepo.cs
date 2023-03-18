@@ -24,10 +24,11 @@ namespace BuissnessObject.Repository
             };
             return QuizDAO.CreateQuiz(Quiz);
         }
-        public void UpdateQuiz(QuizDTO QuizDTO)
+        public void UpdateQuiz(QuizUpdateDTO QuizDTO)
         {
             var Quiz = new Quiz()
             {
+                QuizId = QuizDTO.QuizID,
                 StudentName = QuizDTO.StudentName,
                 CourseId = QuizDTO.CourseId,
                 EndDate = QuizDTO.EndDate,

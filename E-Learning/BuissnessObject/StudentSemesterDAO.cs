@@ -13,6 +13,12 @@ namespace BuissnessObject
     {
         public string Name { get; set; }
     }
+
+    public class StudentSemesterUpdateDTO
+    {
+        public string StudentSemesterID { get; set; }
+        public string Name { get; set; }
+    }
     public class StudentSemesterDAO
     {
         public static List<StudentSemester> GetAllStudentSemesters()
@@ -42,7 +48,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.StudentSemesterError.STUDENT_SEMESTER_EXITED);
                     }
                     db.StudentSemesters.Add(StudentSemester);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return StudentSemester;
                 }
                 catch (Exception ex)
@@ -64,7 +70,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.StudentSemesterError.STUDENT_SEMESTER_IS_NOT_EXITED);
                     }
                     db.StudentSemesters.Update(StudentSemester);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -84,8 +90,14 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.StudentSemesterError.STUDENT_SEMESTER_IS_NOT_EXITED);
                     }
                     StudentSemester StudentSemester = GetStudentSemesterById(StudentSemesterID);
+                    List<Student> students = db.Students.ToList().FindAll(s => s.StudentSemesterId == StudentSemesterID);
+                    foreach (var student in students)
+                        StudentDAO.DeleteStudent(student.StudentId);
+                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.StudentSemesterId == StudentSemesterID);
+                    foreach (var subject in subjects)
+                        SubjectDAO.DeleteSubject(subject.SubjectId);
                     db.StudentSemesters.Remove(StudentSemester);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

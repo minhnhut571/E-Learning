@@ -44,23 +44,16 @@ namespace E_LearningAPI.Controllers
 
         // PUT: api/StudentSemesters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudentSemester(string id, StudentSemesterDTO  StudentSemester)
+        [HttpPut]
+        public async Task<IActionResult> PutStudentSemester(StudentSemesterUpdateDTO  StudentSemester)
         {
             try
             {
                 StudentSemesterRepo.UpdateStudentSemester(StudentSemester);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!StudentSemesterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw new Exception(ex.Message);
             }
 
             return NoContent();

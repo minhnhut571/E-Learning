@@ -15,6 +15,15 @@ namespace BuissnessObject
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
+
+    public class SemesterUpdateDTO
+    {
+        public string SemesterID { get; set; }
+        public string SemesterName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+    }
+
     public class SemesterDAO
     {
         public static List<Semester> GetAllSemesters()
@@ -44,7 +53,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SemesterError.SEMESTER_EXITED);
                     }
                     db.Semesters.Add(Semester);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return Semester;
                 }
                 catch (Exception ex)
@@ -66,7 +75,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SemesterError.SEMESTER_IS_NOT_EXITED);
                     }
                     db.Semesters.Update(Semester);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -86,8 +95,11 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SemesterError.SEMESTER_IS_NOT_EXITED);
                     }
                     Semester Semester = GetSemesterById(SemesterID);
+                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.SemesterId == SemesterID);
+                    foreach (var subject in subjects)
+                        SubjectDAO.DeleteSubject(subject.SubjectId);
                     db.Semesters.Remove(Semester);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

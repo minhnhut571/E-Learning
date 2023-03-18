@@ -24,10 +24,11 @@ namespace BuissnessObject.Repository
             };
             return CourseDAO.CreateCourse(Course);
         }
-        public void UpdateCourse(CourseDTO CourseDTO)
+        public void UpdateCourse(CourseUpdateDTO CourseDTO)
         {
             var Course = new Course()
             {
+                CourseId = CourseDTO.CourseID,
                 LinkCourse = CourseDTO.LinkCourse,
                 SubjectId = CourseDTO.SubjectId,
                 TeacherId = CourseDTO.TeacherId,

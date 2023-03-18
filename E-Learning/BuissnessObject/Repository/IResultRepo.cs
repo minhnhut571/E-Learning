@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<Result> GetResults();
         public Result GetResultByID(String ResultID);
         public Result CreateResult(ResultDTO Result);
-        public void UpdateResult(ResultDTO Result);
+        public void UpdateResult(ResultUpdateDTO Result);
         public void DeleteResult(String ResultID);
     }
 }

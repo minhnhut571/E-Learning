@@ -12,7 +12,7 @@ namespace BuissnessObject.Repository
         public List<Subject> GetSubjects();
         public Subject GetSubjectByID(String SubjectID);
         public Subject CreateSubject(SubjectDTO SubjectDTO);
-        public void UpdateSubject(SubjectDTO SubjectDTO);
+        public void UpdateSubject(SubjectUpdateDTO SubjectDTO);
         public void DeleteSubject(String SubjectID);
     }
 }

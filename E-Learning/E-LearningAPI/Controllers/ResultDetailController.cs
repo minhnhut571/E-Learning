@@ -45,12 +45,9 @@ namespace E_LearningAPI.Controllers
         // PUT: api/ResultDetails/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{ResultID},{QuestionID}")]
-        public async Task<IActionResult> PutResultDetail(string ResultID, string QuestionID, ResultDetailDTO ResultDetail)
+        public async Task<IActionResult> PutResultDetail(ResultDetailDTO ResultDetail)
         {
-            if (ResultID != ResultDetail.ResultId)
-            {
-                return BadRequest();
-            }
+            
 
             try
             {
