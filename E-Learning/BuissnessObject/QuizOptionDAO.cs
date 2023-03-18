@@ -35,7 +35,7 @@ namespace BuissnessObject
         {
             using (var db = new ECourseDBContext())
             {
-                return db.QuizOptions.FirstOrDefault(s => s.QuestionId == QuizOptionID);
+                return db.QuizOptions.FirstOrDefault(s => s.OptionId == QuizOptionID);
             }
         }
 
@@ -45,7 +45,7 @@ namespace BuissnessObject
             {
                 try
                 {
-                    if (GetQuizOptionById(QuizOption.QuestionId) != null)
+                    if (GetQuizOptionById(QuizOption.OptionId) != null)
                     {
                         throw new Exception(ErrorMessage.QuizOptionError.QUIZ_OPTION_EXITED);
                     }
@@ -67,7 +67,7 @@ namespace BuissnessObject
             {
                 try
                 {
-                    if (GetQuizOptionById(QuizOption.QuestionId) == null)
+                    if (GetQuizOptionById(QuizOption.OptionId) == null)
                     {
                         throw new Exception(ErrorMessage.QuizOptionError.QUIZ_OPTION_IS_NOT_EXITED);
                     }
