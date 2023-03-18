@@ -95,12 +95,7 @@ namespace BuissnessObject
                     if (Course == null)
                     {
                         throw new Exception(ErrorMessage.CourseError.COURSE_IS_NOT_EXITED);
-                    }
-                    List<CourseDocument> courseDocument = db.CourseDocuments.ToList().FindAll(s => s.CourseId == Course.CourseId);
-                    db.CourseDocuments.RemoveRange(courseDocument);
-                    List<Quiz> quizzes = db.Quizzes.ToList().FindAll(s => s.CourseId == CourseID);
-                    foreach (var quiz in quizzes)
-                        QuizDAO.DeleteQuiz(quiz.QuizId);
+                    }                    
                     db.Courses.Remove(Course);
                     db.SaveChanges();
                 }

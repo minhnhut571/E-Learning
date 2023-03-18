@@ -99,11 +99,6 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SubjectError.SUBJECT_IS_NOT_EXITED);
                     }
                     Subject Subject = GetSubjectById(SubjectID);
-                    List<SubjectItem> subjectItems = db.SubjectItems.ToList().FindAll(s => s.SubjectId == SubjectID);
-                    db.SubjectItems.RemoveRange(subjectItems);
-                    List<Course> courses = db.Courses.ToList().FindAll(s => s.SubjectId == SubjectID);
-                    foreach (var course in courses)
-                        CourseDAO.DeleteCourse(course.CourseId);
                     db.Subjects.Remove(Subject);
                     db.SaveChanges();
                 }

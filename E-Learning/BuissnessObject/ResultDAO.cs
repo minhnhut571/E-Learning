@@ -98,8 +98,6 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.ResultError.RESULT_IS_NOT_EXITED);
                     }
                     Result Result = GetResultById(ResultID);
-                    List<ResultDetail> resultDetails = db.ResultDetails.ToList().FindAll(s => s.ResultId == Result.ResultId);
-                    db.ResultDetails.RemoveRange(resultDetails);
                     db.Results.Remove(Result);
                     db.SaveChanges();
                 }

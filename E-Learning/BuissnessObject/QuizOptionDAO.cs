@@ -92,8 +92,6 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizOptionError.QUIZ_OPTION_IS_NOT_EXITED);
                     }
                     QuizOption QuizOption = GetQuizOptionById(QuizOptionID);
-                    List<ResultDetail> resultDetails = db.ResultDetails.ToList().FindAll(s => s.OptionId == QuizOption.OptionId);
-                    db.ResultDetails.RemoveRange(resultDetails);
                     db.QuizOptions.Remove(QuizOption);
                     db.SaveChanges();
                 }

@@ -95,9 +95,6 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.SemesterError.SEMESTER_IS_NOT_EXITED);
                     }
                     Semester Semester = GetSemesterById(SemesterID);
-                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.SemesterId == SemesterID);
-                    foreach (var subject in subjects)
-                        SubjectDAO.DeleteSubject(subject.SubjectId);
                     db.Semesters.Remove(Semester);
                     db.SaveChanges();
                 }

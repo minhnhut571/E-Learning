@@ -44,7 +44,7 @@ namespace BuissnessObject
                     //    throw new Exception(ErrorMessage.SubjectItemError.SubjectItem_EXITED);
                     //}
                     db.SubjectItems.Add(SubjectItem);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return SubjectItem;
                 }
                 catch (Exception ex)
@@ -66,7 +66,7 @@ namespace BuissnessObject
                     //    throw new Exception(ErrorMessage.SubjectItemError.SubjectItem_IS_NOT_EXITED);
                     //}
                     db.SubjectItems.Update(SubjectItem);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -85,9 +85,9 @@ namespace BuissnessObject
                     //{
                     //    throw new Exception(ErrorMessage.SubjectItemError.SubjectItem_IS_NOT_EXITED);
                     //}
-                    SubjectItem SubjectItem = GetSubjectItemById(StudentID, SubjectID);
+                    SubjectItem SubjectItem = GetSubjectItemById(SubjectID, StudentID);
                     db.SubjectItems.Remove(SubjectItem);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

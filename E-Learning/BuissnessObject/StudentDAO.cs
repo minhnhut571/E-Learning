@@ -91,8 +91,6 @@ namespace BuissnessObject
                     }
 
                     student.Status = false;
-                    List<SubjectItem> subjectItems = db.SubjectItems.ToList().FindAll(s => s.StudentId == StudentID);
-                    db.SubjectItems.RemoveRange(subjectItems);
                     db.Students.Update(student);
                     db.SaveChanges();
                 }

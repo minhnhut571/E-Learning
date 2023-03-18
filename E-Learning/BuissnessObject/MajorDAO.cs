@@ -89,9 +89,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.MajorError.MAJOR_IS_NOT_EXITED);
                     }
                     Major Major = GetMajorById(MajorID);
-                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.MajorId == MajorID);
-                    foreach (var subject in subjects)
-                        SubjectDAO.DeleteSubject(subject.SubjectId);
+                    
                     db.Majors.Remove(Major);
                     db.SaveChanges();
                 }

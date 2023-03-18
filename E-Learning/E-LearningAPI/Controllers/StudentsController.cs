@@ -126,7 +126,7 @@ namespace E_LearningAPI.Controllers
             smtpClient.Credentials = new NetworkCredential("jobsharingvn24h@gmail.com", "jzxbegcswrpffnek");
             // read HTML file into a string variable
             string htmlBody;
-            using (StreamReader reader = new StreamReader(@"D:\SWD\SourcCode\Github\E-Learning\E-Learning\E-LearningAPI\sendMail.html"))
+            using (StreamReader reader = new StreamReader(@"D:\SWD\Github\E-Learning\E-Learning\E-LearningAPI\sendMail.html"))
             {
                 htmlBody = reader.ReadToEnd();
             }

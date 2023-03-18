@@ -47,7 +47,7 @@ namespace BuissnessObject
         {
             using (var db = new ECourseDBContext())
             {
-                return db.Teachers.FirstOrDefault(s => s.TeacherId == TeacherID);
+                return db.Teachers.FirstOrDefault(s => s.TeacherId == TeacherID );
             }
         }
 
@@ -104,9 +104,6 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.TeacherError.TEACHER_IS_NOT_EXITED);
                     }
                     Teacher teacher = GetTeacherById(TeacherID);
-                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.TeacherId == teacher.TeacherId);
-                    foreach (var subject in subjects)
-                        SubjectDAO.DeleteSubject(subject.SubjectId);
                     teacher.Status = false;
                     db.Teachers.Update(teacher);
                     db.SaveChanges();

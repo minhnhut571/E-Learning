@@ -95,9 +95,6 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.QuizError.QUIZ_IS_NOT_EXITED);
                     }
                     Quiz Quiz = GetQuizById(QuizID);
-                    List<QuizQuestion> quizQuestion = db.QuizQuestions.ToList().FindAll(s => s.QuizId == Quiz.QuizId);
-                    foreach (var question in quizQuestion)
-                        QuizQuestionDAO.DeleteQuizQuestion(question.QuestionId);
                     db.Quizzes.Remove(Quiz);
                     db.SaveChanges();
                 }

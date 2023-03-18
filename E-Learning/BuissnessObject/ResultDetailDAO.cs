@@ -49,7 +49,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.ResultDetailError.RESULT_DETAIL_EXITED);
                     }
                     db.ResultDetails.Add(ResultDetail);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return ResultDetail;
                 }
                 catch (Exception ex)
@@ -71,7 +71,7 @@ namespace BuissnessObject
                         throw new Exception(ErrorMessage.ResultDetailError.RESULT_DETAIL_IS_NOT_EXITED);
                     }
                     db.ResultDetails.Update(ResultDetail);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -92,7 +92,7 @@ namespace BuissnessObject
                     }
                     ResultDetail ResultDetail = GetResultDetailById(ResultID, QuestionID);
                     db.ResultDetails.Remove(ResultDetail);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception ex)
                 {

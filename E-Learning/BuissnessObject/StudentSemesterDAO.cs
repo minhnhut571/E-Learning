@@ -85,17 +85,11 @@ namespace BuissnessObject
             {
                 try
                 {
+                    StudentSemester StudentSemester = GetStudentSemesterById(StudentSemesterID);
                     if (GetStudentSemesterById(StudentSemesterID) == null)
                     {
                         throw new Exception(ErrorMessage.StudentSemesterError.STUDENT_SEMESTER_IS_NOT_EXITED);
                     }
-                    StudentSemester StudentSemester = GetStudentSemesterById(StudentSemesterID);
-                    List<Student> students = db.Students.ToList().FindAll(s => s.StudentSemesterId == StudentSemesterID);
-                    foreach (var student in students)
-                        StudentDAO.DeleteStudent(student.StudentId);
-                    List<Subject> subjects = db.Subjects.ToList().FindAll(s => s.StudentSemesterId == StudentSemesterID);
-                    foreach (var subject in subjects)
-                        SubjectDAO.DeleteSubject(subject.SubjectId);
                     db.StudentSemesters.Remove(StudentSemester);
                     db.SaveChanges();
                 }
